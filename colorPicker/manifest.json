@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "colorPicker",
+  "version": "1.0",
+  "description": "An extension that logs to console on button click",
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "img/wheel.png",
+      "48": "img/wheel.png",
+      "128": "img/wheel.png"
+    }
+  },
+  "icons": {
+    "16": "img/wheel.png",
+    "48": "img/wheel.png",
+    "128": "img/wheel.png"
+  }
+}
