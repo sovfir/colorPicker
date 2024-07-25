@@ -1,3 +1,5 @@
+import * as htc from 'html2canvas.js'
+
 // Создаем элемент для отображения координат
 const coordDiv = document.createElement("div");
 coordDiv.id = "mouse-coord-display";
