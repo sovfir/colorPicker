@@ -1,4 +1,10 @@
 import * as htc from 'html2canvas.js'
+//функция для захвата экрана
+function captureScreen() {
+  htc.html2canvas(document.querySelector("*")).then(canvas => {
+     document.body.appendChild(canvas)
+  });
+  }
 
 // Создаем элемент для отображения координат
 const coordDiv = document.createElement("div");
