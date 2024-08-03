@@ -1,11 +1,3 @@
-import * as htc from 'html2canvas.js'
-//функция для захвата экрана
-function captureScreen() {
-  htc.html2canvas(document.querySelector("*")).then(canvas => {
-     document.body.appendChild(canvas)
-  });
-  }
-
 // Создаем элемент для отображения координат
 const coordDiv = document.createElement("div");
 coordDiv.id = "mouse-coord-display";
@@ -19,7 +11,8 @@ coordDiv.style.zIndex = "10001";
 coordDiv.style.display = "none"; // Начинаем скрытым
 document.body.appendChild(coordDiv);
 document.body.style.cursor = "crosshair";
-//canvas для отображения цвета
+
+// Создаем canvas для отображения цвета
 const canvas = document.createElement("canvas");
 canvas.id = "mouse-coord-canvas";
 canvas.style.position = "fixed";
@@ -40,5 +33,33 @@ function updateCoordinates(event) {
   coordDiv.style.display = "block";
 }
 
+// Функция для захвата экрана и масштабирования изображения
+function captureScreen() {
+  html2canvas(document.body).then((screenshotCanvas) => {
+    const ctx = canvas.getContext("2d");
+
+    // Получаем размеры окна и canvas
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Получаем размеры скриншота
+    const screenshotWidth = screenshotCanvas.width;
+    const screenshotHeight = screenshotCanvas.height;
+
+    // Вычисляем коэффициенты масштабирования
+    const widthRatio = windowWidth / screenshotWidth;
+    const heightRatio = windowHeight / screenshotHeight;
+    const scale = Math.min(widthRatio, heightRatio);
+
+    // Устанавливаем размеры canvas
+    canvas.width = screenshotWidth * scale;
+    canvas.height = screenshotHeight * scale;
+
+    // Масштабируем и рисуем изображение на canvas
+    ctx.drawImage(screenshotCanvas, 0, 0, canvas.width, canvas.height);
+  });
+}
+
 // Добавляем обработчик события мыши
 document.addEventListener("mousemove", updateCoordinates);
+document.addEventListener("click", captureScreen);

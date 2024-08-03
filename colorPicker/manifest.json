@@ -19,5 +19,11 @@
     "16": "img/wheel.png",
     "48": "img/wheel.png",
     "128": "img/wheel.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["html2canvas.js", "content.js"]
+    }
+  ]
 }
