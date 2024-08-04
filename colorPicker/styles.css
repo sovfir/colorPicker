@@ -1,22 +1,48 @@
+/* Устанавливаем фон тела документа прозрачным */
 body {
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: black; /* Полностью прозрачный фон */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Контейнер для кнопки */
+.container {
+  text-align: center;
+  padding: 0; /* Убираем внутренние отступы */
+  background-color: transparent;
+}
+
+/* Стиль кнопки */
+button {
+  border: none; /* Убираем границу */
+  padding: 0; /* Убираем внутренние отступы */
+  background: none; /* Убираем фон кнопки */
+  cursor: pointer; /* Курсор в виде указателя */
+  transition: transform 0.3s; /* Плавный переход */
+  display: inline-block; /* Чтобы изображение правильно центрировалось */
+}
+
+button img {
+  display: block; /* Убираем отступы и белые поля вокруг изображения */
+  width: 60px; /* Ширина изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  border-radius: 5px; /* Скругленные углы изображения */
+  background-color: transparent;
+}
+
+button:hover img {
+  transform: scale(1.05); /* Увеличение изображения при наведении */
+}
+
+button:active img {
+  transform: scale(1); /* Возвращение к исходному размеру при нажатии */
+}
+
+/* Убираем обводку фокуса */
+button:focus {
+  outline: none;
+}

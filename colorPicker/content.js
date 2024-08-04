@@ -1,3 +1,5 @@
+captureVisibleArea();
+let colorBuffer = "";
 // Создаем элемент для отображения координат
 const coordDiv = document.createElement("div");
 coordDiv.id = "mouse-coord-display";
@@ -56,13 +58,25 @@ function updateCoordinates(event) {
       const hex = c.toString(16);
       return hex.length === 1 ? "0" + hex : hex;
     };
-  
+
     // Объединяет все компоненты в один HEX-код
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
   let hexColor = rgbToHex(red, green, blue);
   coordDiv.textContent = `X: ${x}, Y: ${y},RGB:(${red},${green},${blue}), HEX:${hexColor}`;
   coordDiv.innerHTML = `X: ${x}, Y: ${y}<br>RGB:(${red},${green},${blue}),<br>HEX:${hexColor}`;
+  colorBuffer = hexColor;
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      console.log("Text copied to clipboard");
+    })
+    .catch((err) => {
+      console.error("Failed to copy text: ", err);
+    });
 }
 
 // Функция для захвата видимой области и отображения на canvas
@@ -88,4 +102,4 @@ function captureVisibleArea() {
 
 // Добавляем обработчик события мыши
 document.addEventListener("mousemove", updateCoordinates);
-document.addEventListener("click", captureVisibleArea);
+document.addEventListener("click", () => copyToClipboard(colorBuffer));
