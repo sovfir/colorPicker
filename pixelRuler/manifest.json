@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "PixelRuler",
+  "version": "1.0",
+  "description": "An extension that rules",
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "img/color.png",
+      "48": "img/color.png",
+      "128": "img/color.png"
+    }
+  },
+  "icons": {
+    "16": "img/color.png",
+    "48": "img/color.png",
+    "128": "img/color.png"
+  }
+}
